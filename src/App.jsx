@@ -1,7 +1,11 @@
+import Navbar from "./components/Navbar";
+
 export default function () {
     return (
         <>
-            <h1>This is app</h1>
+            <Navbar />
         </>
     )
 }
+
+// Home page: Navbar >> Hero section >> Testimonials >> Services >> Gallery >> Promotions >> Footer
