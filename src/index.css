@@ -4,3 +4,14 @@ body{
     background-color: black;
     color: white;
 }
+.hamburger{
+    
+}
+
+.hamburger .lines{
+    /* transform: matrix(1, 0, 0, 1, 0, 0); */
+    display: inline-block;
+    position: relative;
+    height: 2px;
+    background: #F7F7F7;
+}
