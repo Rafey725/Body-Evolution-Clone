@@ -21,15 +21,15 @@ export default function () {
                         </a>
                         <div className="hidden lg:flex items-center">
                             <nav>
-                                <ul className=" text-nowrap flex gap-17 justify-end mr-10 text-[#79b420] -tracking-[1px]">
-                                    <li>Home</li>
-                                    <li>About us</li>
-                                    <li>Packages</li>
+                                <ul className=" text-nowrap flex gap-17 justify-end mr-10 -tracking-[1px] ">
+                                    <li className="cursor-pointer transition-colors duration-200 ease-in-out hover:text-[#79b420]">Home</li>
+                                    <li className="cursor-pointer transition-colors duration-200 ease-in-out hover:text-[#79b420]">About us</li>
+                                    <li className="cursor-pointer transition-colors duration-200 ease-in-out hover:text-[#79b420]">Packages</li>
                                 </ul>
                             </nav>
                             <div className="hidden [@media(min-width:1200px)]:flex justify-center gap-2 border border-[#79b420] rounded-[25px] text-nowrap py-[8px] px-[27px] ">
                                 <img src="src/assets/phone.svg" className="w-4 " alt="phone icon" />
-                                0306-6667817
+                                <div className="cursor-pointer">0306-6667817</div>
                             </div>
                         </div>
                     </div>
