@@ -2,26 +2,29 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/Hero-Section";
 import Testimonials from "./Testimonials";
 import Slider from "./components/Slider";
+import trainerImages from "./data/trainerImages";
+import galleryImages from "./data/gallery";
+import Services from "./components/Services";
+import Promotions from "./components/Promotions";
+import Footer from "./components/Footer";
 
 export default function () {
-    let trainerImages = [
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image1.jpg",
-        "src/assets/sliding-images/slider-image2.jpg",
-        "src/assets/sliding-images/slider-image3.jpeg"
-    ]
+
     return (
         <>
             <Navbar />
-            <main className="pt-[163px] pb-[200px] overflow-x-hidden">
+            <main className="pt-[163px] pb-[50px] overflow-x-hidden">
                 <HeroSection />
                 <Testimonials />
-                <Slider images={trainerImages}/>
+                <Slider images={trainerImages} />
+                <Services />
+                <div>
+                    <h1 className="text-[40px] font-bold text-[#535353] leading-[80px] ml-[30px] mb-[220px]">Gallery</h1>
+                    <Slider images={galleryImages} />
+                </div>
+                <Promotions />
             </main>
+            <Footer />
         </>
     )
 }

@@ -9,14 +9,14 @@ export default function () {
 
                         {/* Hero title */}
                         <div className="font-[Arial] relative top-[105px] w-full flex flex-col items-center justify-center ">
-                            <h1 className="text-[45px] font-[200] text-center leading-[54px] mt-[90px] mb-[36px]">
+                            <h1 className="text-[45px] font-[200] text-center leading-[54px] mt-[90px] mb-[36px] px-[50px]">
                                 Ready For Your Ultimate Fitness Experience Like Never Before!
                             </h1>
                             <p>Strength Training, Cardio, MMA and Much More.</p>
                         </div>
 
                         {/* Hero banners */}
-                        <div className="relative z-20 mt-[10px] pt-[125px] mb-10  grid grid-cols-3  ">
+                        <div className="relative z-20 mt-[10px] pt-[125px] mb-10  grid grid-cols-3  px-[50px]">
                             <div className="bg-[#262626] h-[440px] pt-[52px] pb-[20px] px-[37px]">
                                 <img src="src/assets/mma-classes.png" alt="image" />
                                 <h2 className="leading-[29px] mt-[27px] text-[24px] font-[400]">Weekly MMA CLasses</h2>

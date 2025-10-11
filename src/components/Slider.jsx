@@ -1,79 +1,64 @@
-// import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-// export default function (props) {
-//     let [currentIndex, setCurrentIndex] = useState(0)
-//     let images = props.images.map((image, index) => {
-//         return (
-//             <img src={image} key={index} className={`w-[320px] h-[485px] object-cover ${index === currentIndex && "border-12 border-[#79b420]"}`} alt="Trainer" />
-//         )
-//     })
-//     const visibleImages = Math.floor(window.innerWidth / 320); // how many images fit in viewport
-    
+export default function (props) {
+  let [currentIndex, setCurrentIndex] = useState(2)
+  let intervalRef = useRef(null)
+  let slidesRef = useRef(null)
+  let allImages = [...props.images, ...props.images]
+  let imageSlides = allImages.map((image, index) => {
+    return (
+      <img src={image} key={index} className={`w-[320px] h-[485px] object-cover ${index === currentIndex && "border-12 border-[#79b420] scale-y-103"}`} alt="Trainer" />
+    )
+  })
 
+  // Start the interval
+  function startInterval() {
+    if (intervalRef.current) return
 
-//     useEffect(() => {
-//         let interval = setInterval(() => {
-//             setCurrentIndex(prevIndex => (prevIndex < currentIndex+1 ? prevIndex + 1 : 0)); // loop back to start
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex(prevIndex => prevIndex + 1)
+    }, 2000);
+  }
 
-//             // let slider = document.querySelector('#slider')
-//             // slider.style.transform = `translateX(-320px)`
-//         }, 2000);
-
-//         return () => clearInterval(interval);
-//     })
-
-//     return (
-//         <>
-//             <div id="slider" className="slider flex -mt-[170px] -translate-x-30 transition-transform duration-1000 ease-in-out" style={{ transform: `translateX(-${currentIndex * 320}px)` }} >
-//                 {images}
-//             </div>
-//         </>
-//     )
-// }
+  // Pause the interval
+  function pauseInterval() {
+    clearInterval(intervalRef.current)
+    intervalRef.current = null
+  }
 
 
-
-
-import { useEffect, useRef } from "react";
-
-export default function InfiniteSlider({ images }) {
-  const sliderRef = useRef(null);
-
-  console.log(sliderRef.current);
-  
   useEffect(() => {
-    const slider = sliderRef.current;
-    let scrollAmount = 0;
-    const imageWidth = 320; // width of one image
-    const totalWidth = imageWidth * images.length;
+    startInterval()
 
-    // duplicate images for seamless looping
-    slider.innerHTML += slider.innerHTML;
+    return () => clearInterval(intervalRef.current);
+  }, [])
 
-    const interval = setInterval(() => {
-      scrollAmount += 1; // move 1px per tick
-      if (scrollAmount >= totalWidth) scrollAmount = 0; // loop back
-      slider.style.transform = `translateX(-${scrollAmount}px)`;
-    }, 10); // smaller interval for smooth movement
+  useEffect(() => {
+    if (currentIndex > props.images.length) {
+      pauseInterval()
+      slidesRef.current.style.transition = 'none'
 
-    return () => clearInterval(interval);
-  }, [images]);
+      slidesRef.current.style.transform = 'none'
+
+      void slidesRef.current.offsetWidth;
+
+      setCurrentIndex(2)
+    }
+    else {
+      startInterval()
+      slidesRef.current.style.transition = "transform 1s ease-in-out"
+      slidesRef.current.style.transform = `translateX(-${currentIndex * 320}px)`
+    }
+  }, [currentIndex])
 
   return (
-    <div className="overflow-hidden w-full h-[485px]">
-      <div
-        ref={sliderRef}
-        className="flex"
-      >
-        {images.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`slider-${i}`}
-            className="w-[320px] h-[485px] object-cover"
-          />
-        ))}
+    <>
+      <div className="translate-x-[38%]">
+        <div ref={slidesRef} className="flex -mt-[170px] transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex <= props.images.length && currentIndex * 320}px)` }} >
+          {imageSlides}
+        </div>
       </div>
-    </div>
-  );
+    </>
+  )
 }
